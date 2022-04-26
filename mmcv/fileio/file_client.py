@@ -786,6 +786,8 @@ class FileClient:
     _instances = {}
 
     def __new__(cls, backend=None, prefix=None, **kwargs):
+        if backend is not None and prefix is None:
+            prefix = None  # disable
         if backend is None and prefix is None:
             backend = 'disk'
         if backend is not None and backend not in cls._backends:
